@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimary">
+
+    <TextView
+        android:id="@+id/spacer1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/spacer_settings"
+        android:textColor="@color/textPrimaryDark"
+        android:textSize="12sp"
+        android:layout_marginTop="15dp"
+        android:layout_marginStart="15dp"
+        />
+
+    <RelativeLayout
+        android:id="@+id/notif"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingVertical="10dp"
+        android:paddingHorizontal="15dp"
+        android:layout_below="@+id/spacer1"
+        >
+
+        <TextView
+            android:id="@+id/settings_notification"
+            android:text="@string/settings_notification"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:paddingBottom="10dp"
+            android:textColor="@color/textPrimary"
+            android:layout_centerVertical="true"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/settings_notification_des"
+            android:layout_below="@+id/settings_notification"
+            android:textColor="@color/textPrimaryDark"
+            />
+
+        <Switch
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:switchMinWidth="40dp"
+            />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/clear"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingVertical="10dp"
+        android:paddingHorizontal="15dp"
+        android:layout_below="@id/notif"
+        >
+
+        <TextView
+            android:id="@+id/settings_clear"
+            android:text="@string/settings_clear"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:paddingBottom="10dp"
+            android:textColor="@color/textPrimary"
+            android:layout_centerVertical="true"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/settings_clear_des"
+            android:layout_below="@+id/settings_clear"
+            android:textColor="@color/textPrimaryDark"
+            />
+
+
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/spacer2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/spacer_more"
+        android:layout_below="@+id/clear"
+        android:fontVariationSettings=""
+        android:textColor="@color/textPrimaryDark"
+        android:textSize="12sp"
+        android:layout_marginTop="15dp"
+        android:layout_marginStart="15dp"
+        />
+
+    <TextView
+        android:id="@+id/feedback"
+        android:layout_below="@+id/spacer2"
+        android:text="@string/settings_feedback"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:paddingVertical="10dp"
+        android:paddingHorizontal="15dp"
+        android:textColor="@color/textPrimary"
+        />
+
+    <TextView
+        android:id="@+id/version"
+        android:layout_below="@+id/feedback"
+        android:text="@string/settings_version"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:paddingVertical="10dp"
+        android:paddingHorizontal="15dp"
+        android:textColor="@color/textPrimary"
+        />
+
+    <TextView
+        android:id="@+id/settings_currentversion"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/feedback"
+        android:layout_alignParentRight="true"
+        android:paddingHorizontal="15dp"
+        android:paddingVertical="10dp"
+        android:text="@string/current_version"
+        android:textColor="@color/textPrimaryDark"
+        android:textSize="20sp" />
+
+
+</RelativeLayout>
