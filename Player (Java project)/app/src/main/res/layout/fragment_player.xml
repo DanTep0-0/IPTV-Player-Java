@@ -3,15 +3,6 @@
     xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/text_player"
-        android:text="player"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:textAlignment="center"
-        android:textSize="20sp" />
-
     <veg.mediaplayer.sdk.MediaPlayer
         android:id="@+id/player"
         android:layout_gravity="center"

@@ -1,7 +1,5 @@
 package com.example.ip_player;
 
-import android.content.Context;
-
 import android.os.Bundle;
 import android.view.View;
 
@@ -14,9 +12,12 @@ import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import java.lang.ref.SoftReference;
 import java.nio.ByteBuffer;
+import java.util.ArrayList;
 
 import veg.mediaplayer.sdk.MediaPlayer;
 
@@ -29,15 +30,18 @@ public class MainActivity extends AppCompatActivity implements AddChannelDialog.
     public static SoftReference<PlayerFragment> player;
     NavController navController;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-         navController = Navigation.findNavController(this, R.id.nav_host_fragment);
+        navController = Navigation.findNavController(this, R.id.nav_host_fragment);
 
         setNav();
+
     }
+
 
     void setNav() {
         BottomNavigationView navView = findViewById(R.id.nav_view);
@@ -48,6 +52,7 @@ public class MainActivity extends AppCompatActivity implements AddChannelDialog.
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(navView, navController);
+
     }
 
     public void click(View v) {
@@ -65,9 +70,9 @@ public class MainActivity extends AppCompatActivity implements AddChannelDialog.
         }
     }
 
+    //adding new channel
     @Override
     public void applyData(String name, String stringUri) {
-
         myChannel = new Channel(name, stringUri);
         ListFragment.listOfChannels.add(myChannel);
         ListFragment.adapter.notifyDataSetChanged();
@@ -78,6 +83,7 @@ public class MainActivity extends AppCompatActivity implements AddChannelDialog.
         dialog.show(getSupportFragmentManager(), "add channel dialog");
     }
 
+    //player status
     @Override
     public int Status(int i) {
         if(i == MediaPlayer.PlayerNotifyCodes.PLP_PLAY_SUCCESSFUL.ordinal())

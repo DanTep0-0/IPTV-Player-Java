@@ -30,7 +30,7 @@ public class ListFragment extends Fragment {
             MainActivity.isF = false;
 
             listOfChannels
-                    .add(new Channel("Random", "http://31.134.126.6/stream?id=3456"));
+                    .add(new Channel("112", "http://31.134.126.6/stream?id=3456"));
         }
 
         listViewChannels = view.findViewById(R.id.listOfChannelsV);
