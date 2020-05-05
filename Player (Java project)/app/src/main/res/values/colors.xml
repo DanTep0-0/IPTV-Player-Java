@@ -6,5 +6,5 @@
     <color name="colorPrimaryDark">#202020</color>
     <color name="colorAccent">#2196F3</color>
     <color name="colorBright">#FF0E00</color>
-    <color name="backButton">#5EFFFFFF</color>
+    <color name="backButton">#FF424242</color>
 </resources>

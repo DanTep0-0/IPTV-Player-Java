@@ -1,13 +1,16 @@
 package com.example.ip_player;
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
+import android.view.Window;
 
 import com.example.ip_player.ui.home.ListFragment;
 import com.example.ip_player.ui.player.PlayerFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -37,6 +40,13 @@ public class MainActivity extends AppCompatActivity implements AddChannelDialog.
         setContentView(R.layout.activity_main);
 
         navController = Navigation.findNavController(this, R.id.nav_host_fragment);
+
+        Toolbar toolbar = findViewById(R.id.toolbar);
+
+        if(toolbar != null) {
+            setSupportActionBar(toolbar);
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        }
 
         setNav();
 
