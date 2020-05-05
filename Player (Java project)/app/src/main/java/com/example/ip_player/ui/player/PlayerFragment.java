@@ -50,9 +50,9 @@ public class PlayerFragment extends Fragment{
 
         final String stream_url = channelToShow.url;
         mediaPlayer = (veg.mediaplayer.sdk.MediaPlayer)thisFragmentView.findViewById(R.id.player);
-        final Message message = new Message();
+        mediaPlayer.getSurfaceView().setZOrderOnTop(true);
         mDialog = new ProgressDialog(getActivity());
-        mDialog.setCancelMessage(message);
+        mDialog.setMessage("Please wait...");
         mDialog.show();
 
         if (mediaPlayer != null) {
