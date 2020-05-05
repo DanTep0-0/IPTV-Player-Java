@@ -60,6 +60,8 @@ public class ListFragmentP extends Fragment {
     private void setStandardData(){
         listOfStandardChannels = new ArrayList<>();
         listOfStandardChannels.add(new RecyclerViewItem(R.drawable.ic_launcher_foreground, "1+1 Channel"));
-        listOfStandardChannels.add(new RecyclerViewItem(R.drawable.ic_launcher_foreground, "1+1 Channel"));
+        listOfStandardChannels.add(new RecyclerViewItem(R.drawable.ic_launcher_foreground, "112 Channel"));
+        listOfStandardChannels.add(new RecyclerViewItem(R.drawable.ic_launcher_foreground, "Me IPTV camera"));
+        listOfStandardChannels.add(new RecyclerViewItem(R.drawable.ic_launcher_foreground, "M1 Channel"));
     }
 }

@@ -12,6 +12,8 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
 
@@ -66,7 +68,6 @@ public class PlayerFragment extends Fragment{
             mediaPlayer.Open(config, (MediaPlayer.MediaPlayerCallback) getActivity());
 
         }
-
     }
 
     public MediaPlayerConfig getConfig(veg.mediaplayer.sdk.MediaPlayer mediaPlayer){
