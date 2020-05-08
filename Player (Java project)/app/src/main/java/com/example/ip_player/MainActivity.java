@@ -1,9 +1,8 @@
 package com.example.ip_player;
 
-import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
-import android.view.Window;
+import android.widget.Toast;
 
 import com.example.ip_player.ui.home.ListFragment;
 import com.example.ip_player.ui.player.PlayerFragment;
@@ -15,17 +14,15 @@ import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
-import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import java.lang.ref.SoftReference;
 import java.nio.ByteBuffer;
-import java.util.ArrayList;
+import java.util.Objects;
 
 import veg.mediaplayer.sdk.MediaPlayer;
 
 
-public class MainActivity extends AppCompatActivity implements AddChannelDialog.AddChannelDialogListener,  MediaPlayer.MediaPlayerCallback  {
+public class MainActivity extends AppCompatActivity implements AddChannelDialog.AddChannelDialogListener,  MediaPlayer.MediaPlayerCallback {
 
     public Channel myChannel;
     public static boolean isF = true;
@@ -45,11 +42,10 @@ public class MainActivity extends AppCompatActivity implements AddChannelDialog.
 
         if(toolbar != null) {
             setSupportActionBar(toolbar);
-            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+            Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
         }
 
         setNav();
-
     }
 
 
@@ -77,6 +73,12 @@ public class MainActivity extends AppCompatActivity implements AddChannelDialog.
                 goToHome();
                 break;
 
+            case R.id.clear:
+                if(ChannelAdapter.clearChannels()){
+                    Toast.makeText(v.getContext(), "Cleared successfully!", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(v.getContext(), "Nothing to delete!", Toast.LENGTH_SHORT).show();
+                };
         }
     }
 
