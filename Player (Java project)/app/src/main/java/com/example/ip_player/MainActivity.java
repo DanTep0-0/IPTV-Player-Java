@@ -1,5 +1,7 @@
 package com.example.ip_player;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
@@ -74,11 +76,22 @@ public class MainActivity extends AppCompatActivity implements AddChannelDialog.
                 break;
 
             case R.id.clear:
-                if(ChannelAdapter.clearChannels()){
-                    Toast.makeText(v.getContext(), "Cleared successfully!", Toast.LENGTH_SHORT).show();
-                } else {
-                    Toast.makeText(v.getContext(), "Nothing to delete!", Toast.LENGTH_SHORT).show();
-                };
+                new AlertDialog.Builder(this)
+                        .setIcon(android.R.drawable.ic_delete)
+                        .setTitle("Are you sure?")
+                        .setMessage("Do you want delete all recent data?")
+                        .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                if(ChannelAdapter.clearData()){
+                                    Toast.makeText(getApplicationContext(), "Cleared successfully!", Toast.LENGTH_SHORT).show();
+                                } else {
+                                    Toast.makeText(getApplicationContext(), "Nothing to delete!", Toast.LENGTH_SHORT).show();
+                                };
+                            }
+                        })
+                        .setNegativeButton("No", null)
+                        .show();
         }
     }
 
