@@ -38,15 +38,19 @@ public class PlayerFragment extends Fragment{
         channelToShow = MainActivity.currentChannel;
         thisFragmentView = root;
 
-        MainActivity.player = new SoftReference<PlayerFragment>(this);
+        if(MainActivity.player == null){
+            MainActivity.player = new SoftReference<PlayerFragment>(this);
+            startPlayer();
+        } else {
+            this.mediaPlayer = MainActivity.player.get().mediaPlayer;
+            mediaPlayer.Open(getConfig(mediaPlayer), (MediaPlayer.MediaPlayerCallback) getActivity());
+        }
+
 
         return root;
     }
 
-    @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-
+    public void startPlayer() {
         final String stream_url = channelToShow.url;
         mediaPlayer = (veg.mediaplayer.sdk.MediaPlayer)thisFragmentView.findViewById(R.id.player);
         mediaPlayer.getSurfaceView().setZOrderOnTop(true);
@@ -64,6 +68,14 @@ public class PlayerFragment extends Fragment{
 
             mediaPlayer.Open(config, (MediaPlayer.MediaPlayerCallback) getActivity());
 
+        }
+    }
+
+    @Override
+    public void onDestroy(){
+        super.onDestroy();
+        if (mediaPlayer != null){
+            stopPlayer();
         }
     }
 
@@ -86,7 +98,7 @@ public class PlayerFragment extends Fragment{
     }
 
     public void stopPlayer(){
-        mediaPlayer.Close();
+        mediaPlayer.Close();MainActivity.player=null;
     }
 
 }

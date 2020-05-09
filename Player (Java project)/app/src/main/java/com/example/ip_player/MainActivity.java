@@ -63,6 +63,7 @@ public class MainActivity extends AppCompatActivity implements AddChannelDialog.
     void setNav() {
         BottomNavigationView navView = findViewById(R.id.nav_view);
 
+
         AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(
                 R.id.navigation_home, R.id.navigation_playlist, R.id.navigation_settings)
                 .build();
@@ -74,6 +75,8 @@ public class MainActivity extends AppCompatActivity implements AddChannelDialog.
 
     public void click(View v) {
 
+        Log.d("Info", "CLICKED");
+
         switch (v.getId()) {
             case R.id.addChannelBtn:
                 openDialog();
@@ -81,30 +84,21 @@ public class MainActivity extends AppCompatActivity implements AddChannelDialog.
 
             case R.id.backButton:
                 player.get().stopPlayer();
+                player = null;
                 goToHome();
                 break;
 
             case R.id.clear:
-                if(ChannelAdapter.isListEmpty()){
-                    Toast.makeText(getApplicationContext(), "Nothing to delete!", Toast.LENGTH_SHORT).show();
-                } else {
-                    new AlertDialog.Builder(this)
-                        .setIcon(android.R.drawable.ic_delete)
-                        .setTitle("Are you sure?")
-                        .setMessage("Do you want delete all recent data?")
-                        .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                if(ChannelAdapter.clearData()){
-                                    Toast.makeText(getApplicationContext(), "Cleared successfully!", Toast.LENGTH_SHORT).show();
-                                }
-                            }
-                        })
-                        .setNegativeButton("No", null)
-                        .show();
-                }
-
-            case R.id.notificationBtn:
+                clearListOfChannels();
+                break;
+            
+            default:
+                player.get().stopPlayer();
+                Log.d("Info", "in default");
+                break;
+                //goes to another fragment automatically
+                //this will be done when clicked buttons:
+                //home, playlist, settings
 
 
         }
@@ -157,6 +151,27 @@ public class MainActivity extends AppCompatActivity implements AddChannelDialog.
 
     public void goToPlayer(){
         navController.navigate(R.id.navigation_player);
+    }
+
+    private void clearListOfChannels(){
+        if(ChannelAdapter.isListEmpty()){
+            Toast.makeText(getApplicationContext(), "Nothing to delete!", Toast.LENGTH_SHORT).show();
+        } else {
+            new AlertDialog.Builder(this)
+                    .setIcon(android.R.drawable.ic_delete)
+                    .setTitle("Are you sure?")
+                    .setMessage("Do you want delete all recent data?")
+                    .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            if(ChannelAdapter.clearData()){
+                                Info.setChannelsInfo(ListFragment.listOfChannels, MainActivity.this);
+                                Toast.makeText(getApplicationContext(), "Cleared successfully!", Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                    })
+                    .show();
+        }
     }
 
 }

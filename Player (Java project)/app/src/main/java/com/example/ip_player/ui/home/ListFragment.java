@@ -52,7 +52,7 @@ public class ListFragment extends Fragment {
                || channels_names.get(0).equals(null)
                || channels_urls.size() != channels_names.size()) {
 
-                Info.useChannels(Info.toArrayList(standartChannels), listOfChannels);
+                throw new Exception();
 
             } else {
                 Info.useChannels(Info.combine(channels_names, channels_urls), listOfChannels);
