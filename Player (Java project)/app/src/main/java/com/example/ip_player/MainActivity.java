@@ -13,6 +13,7 @@ import com.example.ip_player.ui.home.ListFragment;
 import com.example.ip_player.ui.player.PlayerFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.navigation.NavController;
@@ -96,10 +97,19 @@ public class MainActivity extends AppCompatActivity implements AddChannelDialog.
                                 }
                             }
                         })
+                        .setNegativeButton("No", null)
                         .show();
                 }
         }
     }
+
+    //restore variables when changing orientation
+//    @Override
+//    protected void onSaveInstanceState(@NonNull Bundle outState) {
+//        super.onSaveInstanceState(outState);
+//
+//        outState.put
+//    }
 
     //adding new channel
     @Override
@@ -111,6 +121,7 @@ public class MainActivity extends AppCompatActivity implements AddChannelDialog.
         Log.d("Info", "in applyData: listOfChannels" + ListFragment.listOfChannels.toString());
     }
 
+    //dialog when adding channels
     public void openDialog() {
         AddChannelDialog dialog = new AddChannelDialog();
         dialog.show(getSupportFragmentManager(), "add channel dialog");
