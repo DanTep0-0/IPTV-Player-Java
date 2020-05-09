@@ -77,6 +77,7 @@ public class PlayerFragment extends Fragment{
     }
 
     public MediaPlayerConfig getConfig(veg.mediaplayer.sdk.MediaPlayer mediaPlayer){
+
         MediaPlayerConfig config = new MediaPlayerConfig();
         config.setConnectionUrl(mediaPlayer.getConfig().getConnectionUrl());
         config.setConnectionNetworkProtocol(-1);
