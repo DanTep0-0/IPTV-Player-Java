@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.MediaController;
 
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
@@ -37,19 +38,15 @@ public class PlayerFragment extends Fragment{
         channelToShow = MainActivity.currentChannel;
         thisFragmentView = root;
 
-        if(MainActivity.player == null){
             MainActivity.player = new SoftReference<PlayerFragment>(this);
-            startPlayer();
-        } else {
-            this.mediaPlayer = MainActivity.player.get().mediaPlayer;
-            mediaPlayer.Open(getConfig(mediaPlayer), (MediaPlayer.MediaPlayerCallback) getActivity());
-        }
-
 
         return root;
     }
 
-    public void startPlayer() {
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+
         final String stream_url = channelToShow.url;
         mediaPlayer = (veg.mediaplayer.sdk.MediaPlayer)thisFragmentView.findViewById(R.id.player);
         mediaPlayer.getSurfaceView().setZOrderOnTop(true);
@@ -97,7 +94,7 @@ public class PlayerFragment extends Fragment{
     }
 
     public void stopPlayer(){
-        mediaPlayer.Close();MainActivity.player=null;
+        mediaPlayer.Close();
     }
 
 }

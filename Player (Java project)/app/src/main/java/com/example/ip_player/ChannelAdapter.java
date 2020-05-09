@@ -117,7 +117,7 @@ public class ChannelAdapter extends BaseAdapter {
     }
 
     public static boolean isListEmpty() {
-        if (ListFragment.listOfChannels.isEmpty()) {
+        if (ListFragment.listOfChannels.isEmpty() || ListFragment.listOfChannels.equals(Info.toArrayList(ListFragment.standartChannels))) {
             return true;
         } else {
             return false;
@@ -128,6 +128,12 @@ public class ChannelAdapter extends BaseAdapter {
         ListFragment.listOfChannels.clear();
         ListFragment.adapter.notifyDataSetChanged();
         return true;
+    }
+
+    public static Channel validateChannel(Channel channel){
+        channel.name = !channel.name.isEmpty() && !channel.name.equals(" ") ? channel.name : "none";
+        channel.url = !channel.url.isEmpty() && !channel.url.equals(" ") ? channel.url : "none";
+        return channel;
     }
 
 }
