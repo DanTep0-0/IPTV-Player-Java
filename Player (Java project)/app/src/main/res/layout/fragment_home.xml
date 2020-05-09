@@ -13,17 +13,8 @@
         android:text="@string/add_button"
         android:layout_centerHorizontal="true"
         android:paddingHorizontal="20dp"
-        android:onClick="click"
-        />
-
-    <Button
-        android:id="@+id/notificationBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:text="@string/add_button"
-        android:layout_centerHorizontal="true"
-        android:paddingHorizontal="20dp"
+        android:background="@color/buttonColor"
+        android:textColor="@color/buttonTextColor"
         android:onClick="click"
         />
 
@@ -36,7 +27,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/addChannelBtn"
         android:textSize="20sp"
-        android:textColor="@color/textPrimaryDark"
+        android:textColor="@color/textSecondary"
         />
 
     <fragment

@@ -11,11 +11,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.ip_player.Channel;
 import com.example.ip_player.ChannelAdapterP;
-import com.example.ip_player.MainActivity;
 import com.example.ip_player.R;
 import com.example.ip_player.RecyclerViewItem;
 
-import com.example.ip_player.ui.home.ListFragment;
 
 import java.util.ArrayList;
 

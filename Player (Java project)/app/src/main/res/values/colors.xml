@@ -1,10 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="textPrimary">#ffffff</color>
-    <color name="textPrimaryDark">#9E9E9E</color>
-    <color name="colorPrimary">#32373F</color>
-    <color name="colorPrimaryDark">#202020</color>
+
+    <color name="bg_color">#fafafa</color>
+    <color name="textPrimary">#333333</color>
+    <color name="textSecondary">#555555</color>
+
+    <color name="buttonColor">#5EB5FA</color>
+    <color name="buttonTextColor">#202020</color>
+
+    <color name="colorPrimary">#0476D1</color>
+    <color name="colorPrimaryDark">#555555</color>
+    <color name="colorSecondary">#202020</color>
+    <color name="colorSecondaryActive">#0476D1</color>
+
+    <color name="backButtonColor">#fafafa</color>
+
     <color name="colorAccent">#2196F3</color>
     <color name="colorBright">#FF0E00</color>
-    <color name="backButton">#FF424242</color>
+
+    <color name="bottomNavBg">#fafafa</color>
+    <color name="bottomNavBorder">#FFDDDDDD</color>
+
 </resources>

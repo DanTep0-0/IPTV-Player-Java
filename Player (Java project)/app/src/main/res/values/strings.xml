@@ -11,8 +11,11 @@
     <string name="settings_notification_des">Receive notifications about service</string>
     <string name="settings_clear">Clear Data</string>
     <string name="settings_clear_des">Delete all recent channels</string>
-    <string name="spacer_settings">GENERAL</string>
+    <string name="settings_appearance">Dark mode</string>
+    <string name="settings_appearance_des">Switch to the dark theme mode</string>
+    <string name="spacer_general">GENERAL</string>
     <string name="spacer_more">MORE</string>
+    <string name="spacer_appearance">APPEARANCE</string>
     <string name="settings_feedback">Feedback</string>
     <string name="settings_version">Version</string>
     <string name="current_version">1.1</string>

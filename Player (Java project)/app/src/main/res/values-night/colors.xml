@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="bg_color">#272727</color>
+    <color name="textPrimary">#eee</color>
+    <color name="textSecondary">#9E9E9E</color>
+
+    <color name="buttonColor">#fafafa</color>
+    <color name="buttonTextColor">#202020</color>
+
+    <!--COLORS FOR BOTTOM NAV-->
+    <color name="colorPrimary">#03A9F4</color>
+    <color name="colorPrimaryDark">#202020</color>
+    <color name="colorSecondary">#fafafa</color>
+    <color name="colorSecondaryActive">#fafafa</color>
+
+    <!---->
+
+    <color name="backButtonColor">#fafafa</color>
+
+    <color name="bottomNavBg">#303030</color>
+    <color name="bottomNavBorder">#00000000</color>
+
+<!--    <color name="colorPrimary">#32373F</color>-->
+
+</resources>
