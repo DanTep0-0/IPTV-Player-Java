@@ -1,5 +1,6 @@
 package com.example.ip_player;
 
+import com.example.ip_player.ui.home.Info;
 import com.example.ip_player.ui.home.ListFragment;
 
 import android.app.Activity;
@@ -102,6 +103,7 @@ public class ChannelAdapter extends BaseAdapter {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 ListFragment.listOfChannels.remove(item);
+                                Info.setChannelsInfo(ListFragment.listOfChannels, context);
                                 ListFragment.adapter.notifyDataSetChanged();
 
                             }
@@ -123,13 +125,9 @@ public class ChannelAdapter extends BaseAdapter {
     }
 
     public static boolean clearData() {
-        if(isListEmpty()) {
-            return false;
-        } else {
-            ListFragment.listOfChannels.clear();
-            ListFragment.adapter.notifyDataSetChanged();
-            return true;
-        }
+        ListFragment.listOfChannels.clear();
+        ListFragment.adapter.notifyDataSetChanged();
+        return true;
     }
 
 }
