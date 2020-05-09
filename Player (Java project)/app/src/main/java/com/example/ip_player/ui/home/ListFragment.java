@@ -18,6 +18,8 @@ import com.example.ip_player.R;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Objects;
+
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashSet;
@@ -58,11 +60,12 @@ public class ListFragment extends Fragment {
 
         } catch (Exception e){
             Info.useChannels(Info.toArrayList(standartChannels), listOfChannels);
+
         }
 
 
         listViewChannels = view.findViewById(R.id.listOfChannelsV);
-        adapter = new ChannelAdapter(getActivity(), listOfChannels);
+        adapter = new ChannelAdapter(Objects.requireNonNull(getActivity()), listOfChannels);
         listViewChannels.setAdapter(adapter);
 
         return view;

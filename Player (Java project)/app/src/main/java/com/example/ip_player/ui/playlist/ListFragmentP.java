@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ListView;
 
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -16,13 +15,13 @@ import com.example.ip_player.MainActivity;
 import com.example.ip_player.R;
 import com.example.ip_player.RecyclerViewItem;
 
+import com.example.ip_player.ui.home.ListFragment;
+
 import java.util.ArrayList;
 
 public class ListFragmentP extends Fragment {
 
-//    public static ChannelAdapterP adapter;
-//    public static ArrayList<Channel> listOfChannelsP;
-//    public static ListView listViewChannelsP;
+    public static ArrayList<Channel> listOfChannelsP;
 
     //  Playlist page - ListView
     private RecyclerView gridView;
@@ -38,19 +37,22 @@ public class ListFragmentP extends Fragment {
         gridView.setHasFixedSize(true);
 
         setStandardData();
+
         //set layout manager and adapter for "GridView"
         GridLayoutManager layoutManager = new GridLayoutManager(getContext(), 2);
         gridView.setLayoutManager(layoutManager);
         channelAdapterP = new ChannelAdapterP(getActivity(), listOfStandardChannels);
         gridView.setAdapter(channelAdapterP);
 
-
-//        if(MainActivity.isF) {
+        //sync with home page channels
+//        if(ListFragment.listOfChannels != null) {
 //            listOfChannelsP = new ArrayList<>();
-//            MainActivity.isF = false;
+////            MainActivity.isF = false;
 //
-//            listOfChannelsP
-//                    .add(new Channel("112", "http://31.134.126.6/stream?id=3456"));
+//            for (int i = 0; i < ListFragment.listOfChannels.size(); i++) {
+//                listOfChannelsP.set(i, ListFragment.listOfChannels.get(i));
+//            }
+//            channelAdapterP.notifyDataSetChanged();
 //        }
 
         return view;
@@ -61,7 +63,7 @@ public class ListFragmentP extends Fragment {
         listOfStandardChannels = new ArrayList<>();
         listOfStandardChannels.add(new RecyclerViewItem(R.drawable.ic_launcher_foreground, "1+1 Channel"));
         listOfStandardChannels.add(new RecyclerViewItem(R.drawable.ic_launcher_foreground, "112 Channel"));
-        listOfStandardChannels.add(new RecyclerViewItem(R.drawable.ic_launcher_foreground, "Me IPTV camera"));
+        listOfStandardChannels.add(new RecyclerViewItem(R.drawable.ic_launcher_foreground, "My IPTV camera"));
         listOfStandardChannels.add(new RecyclerViewItem(R.drawable.ic_launcher_foreground, "M1 Channel"));
     }
 }
