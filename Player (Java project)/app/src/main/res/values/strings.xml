@@ -19,4 +19,5 @@
     <string name="add_button">Add new channel</string>
     <string name="title_player">Player</string>
     <string name="player_button_text">\u2190</string>
+    <string name="remove_button">x</string>
 </resources>

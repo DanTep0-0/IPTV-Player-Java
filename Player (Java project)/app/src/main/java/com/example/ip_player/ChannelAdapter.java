@@ -1,16 +1,15 @@
 package com.example.ip_player;
 
+import com.example.ip_player.ui.home.ListFragment;
+
 import android.app.Activity;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.FragmentActivity;
-
-import android.app.Fragment;
+import android.app.AlertDialog;
 
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.Context;
-import android.util.Log;
+import android.content.DialogInterface;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,7 +18,6 @@ import android.widget.TextView;
 
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
-import androidx.navigation.fragment.NavHostFragment;
 
 
 import com.example.ip_player.ui.player.PlayerFragment;
@@ -27,7 +25,6 @@ import com.example.ip_player.ui.player.PlayerFragment;
 import java.util.ArrayList;
 
 public class ChannelAdapter extends BaseAdapter {
-
     Activity context;
     ArrayList<Channel> channels;
     private static LayoutInflater inflater = null;
@@ -42,6 +39,7 @@ public class ChannelAdapter extends BaseAdapter {
         inflater = (LayoutInflater) context.
                 getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
+
 
     @Override
     public int getCount() {
@@ -70,14 +68,13 @@ public class ChannelAdapter extends BaseAdapter {
         textViewUrl.setText(selectedChannel.url.toString());
 
         setOnClickListener(itemView, position);
+        setOnLongClickListener(itemView, position);
 
         return  itemView;
     }
 
-    View setOnClickListener(View itemView, final int position){
-
+    private View setOnClickListener(View itemView, final int position){
         final NavController navController = Navigation.findNavController(context, R.id.nav_host_fragment);
-
 
         itemView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -86,7 +83,53 @@ public class ChannelAdapter extends BaseAdapter {
                 navController.navigate(R.id.navigation_player);
             }
         });
+
         return itemView;
+    }
+
+    private View setOnLongClickListener(View itemView, final int position){
+        itemView.setOnLongClickListener(new View.OnLongClickListener(){
+
+            @Override
+            public boolean onLongClick(View v) {
+                final Channel item = ListFragment.listOfChannels.get(position);
+
+                new AlertDialog.Builder(context)
+                        .setIcon(android.R.drawable.ic_delete)
+                        .setTitle("Are you sure?")
+                        .setMessage("Do you want to delete this item?")
+                        .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                ListFragment.listOfChannels.remove(item);
+                                ListFragment.adapter.notifyDataSetChanged();
+
+                            }
+                        })
+                        .setNegativeButton("No", null)
+                        .show();
+                return true;
+            }
+        });
+        return itemView;
+    }
+
+    public static boolean isListEmpty() {
+        if (ListFragment.listOfChannels.isEmpty()) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public static boolean clearData() {
+        if(isListEmpty()) {
+            return false;
+        } else {
+            ListFragment.listOfChannels.clear();
+            ListFragment.adapter.notifyDataSetChanged();
+            return true;
+        }
     }
 
 }

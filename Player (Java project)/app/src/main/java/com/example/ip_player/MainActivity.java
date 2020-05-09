@@ -1,10 +1,12 @@
 package com.example.ip_player;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.view.Window;
+import android.widget.Toast;
 
 import com.example.ip_player.ui.home.Info;
 import com.example.ip_player.ui.home.ListFragment;
@@ -17,17 +19,15 @@ import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
-import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import java.lang.ref.SoftReference;
 import java.nio.ByteBuffer;
-import java.util.ArrayList;
+import java.util.Objects;
 
 import veg.mediaplayer.sdk.MediaPlayer;
 
 
-public class MainActivity extends AppCompatActivity implements AddChannelDialog.AddChannelDialogListener,  MediaPlayer.MediaPlayerCallback  {
+public class MainActivity extends AppCompatActivity implements AddChannelDialog.AddChannelDialogListener,  MediaPlayer.MediaPlayerCallback {
 
     public Channel myChannel;
     public static boolean isF = true;
@@ -49,11 +49,10 @@ public class MainActivity extends AppCompatActivity implements AddChannelDialog.
 
         if(toolbar != null) {
             setSupportActionBar(toolbar);
-            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+            Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
         }
 
         setNav();
-
     }
 
 
@@ -81,6 +80,24 @@ public class MainActivity extends AppCompatActivity implements AddChannelDialog.
                 goToHome();
                 break;
 
+            case R.id.clear:
+                if(ChannelAdapter.isListEmpty()){
+                    Toast.makeText(getApplicationContext(), "Nothing to delete!", Toast.LENGTH_SHORT).show();
+                } else {
+                    new AlertDialog.Builder(this)
+                        .setIcon(android.R.drawable.ic_delete)
+                        .setTitle("Are you sure?")
+                        .setMessage("Do you want delete all recent data?")
+                        .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                if(ChannelAdapter.clearData()){
+                                    Toast.makeText(getApplicationContext(), "Cleared successfully!", Toast.LENGTH_SHORT).show();
+                                }
+                            }
+                        })
+                        .show();
+                }
         }
     }
 
