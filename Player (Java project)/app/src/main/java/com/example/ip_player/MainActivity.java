@@ -2,10 +2,13 @@ package com.example.ip_player;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
+import com.example.ip_player.ui.home.Info;
 import com.example.ip_player.ui.home.ListFragment;
 import com.example.ip_player.ui.player.PlayerFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -32,6 +35,8 @@ public class MainActivity extends AppCompatActivity implements AddChannelDialog.
     public static SoftReference<PlayerFragment> player;
     NavController navController;
 
+    public static final String CHANNELS_URLS_TAG = "channels_urls";
+    public final static String CHANNELS_NAMES_TAG = "channels_names";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -101,7 +106,9 @@ public class MainActivity extends AppCompatActivity implements AddChannelDialog.
     public void applyData(String name, String stringUri) {
         myChannel = new Channel(name, stringUri);
         ListFragment.listOfChannels.add(myChannel);
+        Info.setChannelsInfo(ListFragment.listOfChannels, this);
         ListFragment.adapter.notifyDataSetChanged();
+        Log.d("Info", "in applyData: listOfChannels" + ListFragment.listOfChannels.toString());
     }
 
     public void openDialog() {
