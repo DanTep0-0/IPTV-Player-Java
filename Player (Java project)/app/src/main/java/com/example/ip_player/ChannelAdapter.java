@@ -114,8 +114,16 @@ public class ChannelAdapter extends BaseAdapter {
         return itemView;
     }
 
-    public static boolean clearData() {
+    public static boolean isListEmpty() {
         if (ListFragment.listOfChannels.isEmpty()) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public static boolean clearData() {
+        if(isListEmpty()) {
             return false;
         } else {
             ListFragment.listOfChannels.clear();

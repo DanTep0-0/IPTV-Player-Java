@@ -14,6 +14,7 @@ import com.example.ip_player.MainActivity;
 import com.example.ip_player.R;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class ListFragment extends Fragment {
 
@@ -34,7 +35,7 @@ public class ListFragment extends Fragment {
         }
 
         listViewChannels = view.findViewById(R.id.listOfChannelsV);
-        adapter = new ChannelAdapter(getActivity(), listOfChannels);
+        adapter = new ChannelAdapter(Objects.requireNonNull(getActivity()), listOfChannels);
         listViewChannels.setAdapter(adapter);
 
         return view;
