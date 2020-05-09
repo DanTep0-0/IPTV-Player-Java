@@ -12,14 +12,16 @@
 
     <Button
         android:id="@+id/backButton"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="60dp"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="40dp"
-        android:layout_centerHorizontal="true"
+        android:textSize="40dp"
+        android:paddingLeft="5dp"
+        android:paddingBottom="10dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:background="@android:color/transparent"
         android:text="@string/player_button_text"
-        android:background="@color/backButton"
+        android:textColor="@color/textPrimary"
         android:onClick="click"
         >
 
