@@ -71,8 +71,6 @@ public class MainActivity extends AppCompatActivity implements AddChannelDialog.
 
     public void click(View v) {
 
-        Log.d("Info", "CLICKED");
-
         switch (v.getId()) {
             case R.id.addChannelBtn:
                 openDialog();
@@ -80,20 +78,19 @@ public class MainActivity extends AppCompatActivity implements AddChannelDialog.
 
             case R.id.backButton:
                 player.get().stopPlayer();
-                player = null;
                 goToHome();
                 break;
 
             case R.id.clear:
                 clearListOfChannels();
                 break;
-            default:
-                player.get().stopPlayer();
-                Log.d("Info", "in default");
-                break;
-                //goes to another fragment automatically
-                //this will be done when clicked buttons:
-                //home, playlist, settings
+//            default:
+//                player.get().stopPlayer();
+//                Log.d("Info", "in default");
+//                break;
+//                //goes to another fragment automatically
+//                //this will be done when clicked buttons:
+//                //home, playlist, settings
 
         }
     }
@@ -102,8 +99,10 @@ public class MainActivity extends AppCompatActivity implements AddChannelDialog.
     @Override
     public void applyData(String name, String stringUri) {
         myChannel = new Channel(name, stringUri);
-        ListFragment.listOfChannels.add(myChannel);
+        ListFragment.listOfChannels.add(ChannelAdapter.validateChannel(myChannel));
         Info.setChannelsInfo(ListFragment.listOfChannels, this);
+        Log.d("Info", "APPLYDATA: validated channel url = " + ChannelAdapter.validateChannel(myChannel).url);
+        Log.d("Info", "APPLYDATA: channel url = " + myChannel.url);
         ListFragment.adapter.notifyDataSetChanged();
         Log.d("Info", "in applyData: listOfChannels" + ListFragment.listOfChannels.toString());
     }

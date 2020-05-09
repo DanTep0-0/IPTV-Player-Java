@@ -8,6 +8,8 @@ import android.util.Log;
 
 import com.example.ip_player.Channel;
 import com.example.ip_player.MainActivity;
+import com.example.ip_player.R;
+import com.example.ip_player.RecyclerViewItem;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -16,13 +18,6 @@ import java.util.Set;
 public class Info {
 
     // ARRAYS
-
-    public static void useChannels(ArrayList<Channel> channelsToUse, ArrayList<Channel> listOfChannels) {
-        listOfChannels.clear();
-        for (int i = 0; i < channelsToUse.size(); i++) {
-            listOfChannels.add(i, channelsToUse.get(i));
-        }
-    }
 
     public static ArrayList<Channel> combine(ArrayList<String> names, ArrayList<String> urls) {
         ArrayList<Channel> channelsArrayList = new ArrayList<Channel>();
@@ -40,13 +35,70 @@ public class Info {
         return newChannels;
     }
 
+    public static ArrayList<RecyclerViewItem> toRecyclerViewItemArrayList(Channel[] channels){
+        ArrayList<RecyclerViewItem> newChannels = new ArrayList<>();
+        for(int i = 0; i < channels.length; i++){
+            newChannels.add(new RecyclerViewItem(R.drawable.ic_launcher_foreground, channels[i].name));
+        }
+        return newChannels;
+    }
+
+    public static ArrayList<RecyclerViewItem> toRecyclerViewItemArrayList(ArrayList<Channel> channels){
+        ArrayList<RecyclerViewItem> newChannels = new ArrayList<>();
+        for(int i = 0; i < channels.size(); i++){
+            newChannels.add(new RecyclerViewItem(R.drawable.ic_launcher_foreground, channels.get(i).name));
+        }
+        return newChannels;
+    }
+
+    public static ArrayList<Channel> combineToOneChannelArrayList(ArrayList<Channel> channels1, ArrayList<Channel> channels2){
+        channels1.addAll(channels2);
+        return channels1;
+    }
+//
+//    public static int getSpanCount(int numberOfItems, int itemsInRow){
+//        return numberOfItems / itemsInRow + (numberOfItems % itemsInRow == 0 ? 0 : 1);
+//    }
+
+    public static ArrayList<Channel> removeFromTo(ArrayList<Channel> array, int from, int to){
+        try {
+            for (int i = from; i <= to; i++) {
+                array.remove(i);
+            }
+        } catch (Exception e) {
+
+        }
+        return array;
+    }
+
     // INFO
+
+    public static void useChannels(ArrayList<Channel> channelsToUse, ArrayList<Channel> listOfChannels) {
+        listOfChannels.clear();
+
+        for (int i = 0; i < channelsToUse.size(); i++) {
+            listOfChannels.add(i, channelsToUse.get(i));
+        }
+        try{
+            for(int i = channelsToUse.size();;i++){
+
+                if(listOfChannels.get(i) != null){
+                    listOfChannels.set(i, null);
+                }else {
+                    break;
+                }
+            }
+        } catch (IndexOutOfBoundsException e){
+            return;
+        }
+    }
 
     public static ArrayList<String> getChannelsInfo(String TAG, Activity context) {
         SharedPreferences sPrefs = context.getPreferences(context.MODE_PRIVATE);
         ArrayList<String> results = new ArrayList<String>();
 
         for(int i = 0; ;i++){
+            Log.d("Info", "in getChannelsInfo(): value in " + (i) + " = " + sPrefs.getString(TAG + String.valueOf(i), null));
             String value = sPrefs.getString(TAG + String.valueOf(i), null);
             if(value != null){
                 results.add(value);
@@ -62,23 +114,38 @@ public class Info {
         SharedPreferences sPrefs = context.getPreferences(context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sPrefs.edit();
 
-        int i = 0;
-        for(; i < listOfChannels.size(); i++){
 
-            editor.putString(MainActivity.CHANNELS_NAMES_TAG + String.valueOf(i), listOfChannels.get(i).name);
-            editor.putString(MainActivity.CHANNELS_URLS_TAG + String.valueOf(i), listOfChannels.get(i).url);
+        for(int i = 0; i < listOfChannels.size(); i++){
+            String name = listOfChannels.get(i).name;
+            String url = listOfChannels.get(i).url;
+            Log.d("Info", "name in " + String.valueOf(i) + " = " + url.toString());
+
+            editor.putString(MainActivity.CHANNELS_NAMES_TAG + String.valueOf(i), name);
+            editor.putString(MainActivity.CHANNELS_URLS_TAG + String.valueOf(i), url);
 
         }
 
-        for(;; i++){
-            if(sPrefs.getString(MainActivity.CHANNELS_NAMES_TAG + String.valueOf(i), null) != null){
+        for(int i = listOfChannels.size();; i++) {
+            Log.d("Info", "in For: i = " + i);
+            Log.d("Info", "in For: name in i = " + sPrefs.getString(MainActivity.CHANNELS_NAMES_TAG + String.valueOf(i), null));
+            if (sPrefs.getString(MainActivity.CHANNELS_NAMES_TAG + String.valueOf(i), null) != null) {
                 editor.putString(MainActivity.CHANNELS_NAMES_TAG + String.valueOf(i), null);
+            } else {
+                break;
+            }
+        }
+        for(int i = listOfChannels.size();; i++) {
+            if (sPrefs.getString(MainActivity.CHANNELS_URLS_TAG + String.valueOf(i), null) != null) {
+                editor.putString(MainActivity.CHANNELS_URLS_TAG + String.valueOf(i), null);
             } else {
                 break;
             }
         }
 
         editor.commit();
+
+        Log.d("Info", "in setChannelsInfo(): names: " + String.valueOf(getChannelsInfo(MainActivity.CHANNELS_NAMES_TAG, context)));
+        Log.d("Info", "in setChannelsInfo(): urls: " + String.valueOf(getChannelsInfo(MainActivity.CHANNELS_URLS_TAG, context)));
 
     }
 

@@ -31,7 +31,7 @@ public class ListFragment extends Fragment {
     public static ArrayList<Channel> listOfChannels = new ArrayList<Channel>();
     public static ListView listViewChannels;
 
-    private final Channel[] standartChannels = {
+    public static final Channel[] standartChannels = {
             new Channel("112", "http://31.134.126.6/stream?id=3456")
     };
 
@@ -44,21 +44,29 @@ public class ListFragment extends Fragment {
         ArrayList<String> channels_names = Info.getChannelsInfo(MainActivity.CHANNELS_NAMES_TAG, getActivity());
         ArrayList<String> channels_urls = Info.getChannelsInfo(MainActivity.CHANNELS_URLS_TAG, getActivity());
 
+        Log.d("Info", "channels_names = " + channels_names.toString());
+        Log.d("Info", "channels_urls = " + channels_urls.toString());
+
+
 
         try{
-//            new ArrayList<>().get(0);
 
             if(channels_urls.get(0).equals(null)
                || channels_names.get(0).equals(null)
                || channels_urls.size() != channels_names.size()) {
-
-                throw new Exception();
+                Log.d("Info", "here1");
+                Log.d("Info", "are channels null? = " + String.valueOf(channels_urls.get(0).equals(null)
+                        || channels_names.get(0).equals(null)));
+                Log.d("Info", "are they different? = " +  String.valueOf(channels_urls.size() != channels_names.size()));
+                Info.useChannels(Info.toArrayList(standartChannels), listOfChannels);
 
             } else {
+                Log.d("Info", "here2");
                 Info.useChannels(Info.combine(channels_names, channels_urls), listOfChannels);
             }
 
         } catch (Exception e){
+            Log.d("Info", "here3");
             Info.useChannels(Info.toArrayList(standartChannels), listOfChannels);
 
         }
