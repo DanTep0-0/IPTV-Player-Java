@@ -6,6 +6,7 @@ import android.content.DialogInterface;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.Toast;
 
 import com.example.ip_player.ui.home.Info;
@@ -34,7 +35,9 @@ public class MainActivity extends AppCompatActivity implements AddChannelDialog.
     public static boolean isF = true;
     public static Channel currentChannel;
     public static SoftReference<PlayerFragment> player;
-    NavController navController;
+    public NavController navController;
+
+    public Button notificationBtn;
 
     public static final String CHANNELS_URLS_TAG = "channels_urls";
     public final static String CHANNELS_NAMES_TAG = "channels_names";
@@ -100,6 +103,10 @@ public class MainActivity extends AppCompatActivity implements AddChannelDialog.
                         .setNegativeButton("No", null)
                         .show();
                 }
+
+            case R.id.notificationBtn:
+
+
         }
     }
 
