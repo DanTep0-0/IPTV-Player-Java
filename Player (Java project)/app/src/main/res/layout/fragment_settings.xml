@@ -3,14 +3,14 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorPrimary">
+    android:background="@color/bg_color">
 
     <TextView
         android:id="@+id/spacer1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/spacer_settings"
-        android:textColor="@color/textPrimaryDark"
+        android:text="@string/spacer_general"
+        android:textColor="@color/textSecondary"
         android:textSize="12sp"
         android:layout_marginTop="15dp"
         android:layout_marginStart="15dp"
@@ -41,10 +41,11 @@
             android:layout_height="wrap_content"
             android:text="@string/settings_notification_des"
             android:layout_below="@+id/settings_notification"
-            android:textColor="@color/textPrimaryDark"
+            android:textColor="@color/textSecondary"
             />
 
         <Switch
+            android:id="@+id/switch_notifications"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
@@ -53,6 +54,7 @@
             />
 
     </RelativeLayout>
+
 
     <RelativeLayout
         android:id="@+id/clear"
@@ -80,19 +82,69 @@
             android:layout_height="wrap_content"
             android:text="@string/settings_clear_des"
             android:layout_below="@+id/settings_clear"
-            android:textColor="@color/textPrimaryDark"
+            android:textColor="@color/textSecondary"
             />
-
 
     </RelativeLayout>
 
     <TextView
         android:id="@+id/spacer2"
+        android:layout_below="@id/clear"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/spacer_appearance"
+        android:textColor="@color/textSecondary"
+        android:textSize="12sp"
+        android:layout_marginTop="15dp"
+        android:layout_marginStart="15dp"
+        />
+
+    <RelativeLayout
+        android:id="@+id/lightTheme"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingVertical="10dp"
+        android:paddingHorizontal="15dp"
+        android:layout_below="@+id/spacer2"
+        >
+
+        <TextView
+            android:id="@+id/settings_theme"
+            android:text="@string/settings_appearance"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:paddingBottom="10dp"
+            android:textColor="@color/textPrimary"
+            android:layout_centerVertical="true"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/settings_appearance_des"
+            android:layout_below="@+id/settings_theme"
+            android:textColor="@color/textSecondary"
+            />
+
+        <Switch
+            android:id="@+id/switch_darkTheme"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:switchMinWidth="40dp"
+            />
+
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/spacer3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/spacer_more"
-        android:layout_below="@+id/clear"
-        android:textColor="@color/textPrimaryDark"
+        android:layout_below="@+id/lightTheme"
+        android:textColor="@color/textSecondary"
         android:textSize="12sp"
         android:layout_marginTop="15dp"
         android:layout_marginStart="15dp"
@@ -104,7 +156,7 @@
         android:layout_height="wrap_content"
         android:paddingVertical="10dp"
         android:paddingHorizontal="15dp"
-        android:layout_below="@+id/spacer2"
+        android:layout_below="@+id/spacer3"
         android:background="?android:selectableItemBackground"
         >
 
@@ -138,11 +190,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/feedback"
-        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
         android:paddingHorizontal="15dp"
         android:paddingVertical="10dp"
         android:text="@string/current_version"
-        android:textColor="@color/textPrimaryDark"
+        android:textColor="@color/textSecondary"
         android:textSize="20sp" />
 
 

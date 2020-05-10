@@ -14,6 +14,7 @@
             android:id="@+id/list_fragment_p"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_marginBottom="40dp"
             android:name="com.example.ip_player.ui.playlist.ListFragmentP"
             />
 

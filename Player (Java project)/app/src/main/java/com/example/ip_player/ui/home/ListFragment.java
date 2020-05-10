@@ -1,7 +1,5 @@
 package com.example.ip_player.ui.home;
 
-import android.content.Context;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -16,14 +14,9 @@ import com.example.ip_player.ChannelAdapter;
 import com.example.ip_player.MainActivity;
 import com.example.ip_player.R;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Objects;
 
-import java.util.Collection;
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.Set;
 
 public class ListFragment extends Fragment {
 
@@ -39,8 +32,6 @@ public class ListFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_list, container, false);
 
-        Log.d("navigation", "here");
-
         ArrayList<String> channels_names = Info.getChannelsInfo(MainActivity.CHANNELS_NAMES_TAG, getActivity());
         ArrayList<String> channels_urls = Info.getChannelsInfo(MainActivity.CHANNELS_URLS_TAG, getActivity());
 
@@ -51,12 +42,12 @@ public class ListFragment extends Fragment {
 
         try{
 
-            if(channels_urls.get(0).equals(null)
-               || channels_names.get(0).equals(null)
+            if(channels_urls.get(0) == null
+               || channels_names.get(0) == null
                || channels_urls.size() != channels_names.size()) {
                 Log.d("Info", "here1");
-                Log.d("Info", "are channels null? = " + String.valueOf(channels_urls.get(0).equals(null)
-                        || channels_names.get(0).equals(null)));
+                Log.d("Info", "are channels null? = " + String.valueOf(channels_urls.get(0) == null
+                        || channels_names.get(0) == null));
                 Log.d("Info", "are they different? = " +  String.valueOf(channels_urls.size() != channels_names.size()));
                 Info.useChannels(Info.toArrayList(standartChannels), listOfChannels);
 
@@ -73,7 +64,7 @@ public class ListFragment extends Fragment {
 
 
         listViewChannels = view.findViewById(R.id.listOfChannelsV);
-        adapter = new ChannelAdapter(Objects.requireNonNull(getActivity()), listOfChannels);
+        adapter = new ChannelAdapter(getActivity(), listOfChannels);
         listViewChannels.setAdapter(adapter);
 
         return view;
