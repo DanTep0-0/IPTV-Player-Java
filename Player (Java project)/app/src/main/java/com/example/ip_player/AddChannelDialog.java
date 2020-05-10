@@ -24,7 +24,7 @@ public class AddChannelDialog extends AppCompatDialogFragment {
         View view = inflater.inflate(R.layout.layout_dialog, null);
 
         builder.setView(view)
-                .setTitle("Add a channel")
+                .setTitle("Add new stream")
                 .setNegativeButton("cancel", null)
                 .setPositiveButton("ok", new DialogInterface.OnClickListener() {
                     @Override
