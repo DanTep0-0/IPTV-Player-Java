@@ -152,10 +152,6 @@ public class Info {
 
         editor.apply();
 
-
-        Log.d("Info", "in setChannelsInfo(): names: " + String.valueOf(getChannelsInfo(MainActivity.CHANNELS_NAMES_TAG, context)));
-        Log.d("Info", "in setChannelsInfo(): urls: " + String.valueOf(getChannelsInfo(MainActivity.CHANNELS_URLS_TAG, context)));
-
     }
 
     //save switches states

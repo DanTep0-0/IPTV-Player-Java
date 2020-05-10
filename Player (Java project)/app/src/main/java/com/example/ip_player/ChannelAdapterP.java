@@ -2,7 +2,6 @@ package com.example.ip_player;
 
 
 import android.app.Activity;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -41,10 +40,10 @@ public class ChannelAdapterP extends RecyclerView.Adapter<ChannelAdapterP.ViewHo
         View view = inflater.inflate(R.layout.list_item_p_grid, parent, false);
 
         imageView = view.findViewById(R.id.imageViewP);
-        Log.d("ImageView","found at ChannelAdapterP");
 
         return new ViewHolder(view);
     }
+
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
@@ -79,6 +78,7 @@ public class ChannelAdapterP extends RecyclerView.Adapter<ChannelAdapterP.ViewHo
             MainActivity.currentChannel = items.get(position);
             navController.navigate(R.id.navigation_player);
         }
+
 
         public void setPosition(int position){
             this.position = position;

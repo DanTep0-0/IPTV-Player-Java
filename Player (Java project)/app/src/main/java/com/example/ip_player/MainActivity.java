@@ -1,15 +1,11 @@
 package com.example.ip_player;
 
 import android.app.AlertDialog;
-import android.app.NotificationManager;
-import android.app.PendingIntent;
 import android.content.DialogInterface;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.CompoundButton;
 import android.widget.Toast;
 
 import com.example.ip_player.ui.home.Info;
@@ -19,9 +15,6 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import androidx.core.app.NotificationCompat;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -90,35 +83,6 @@ public class MainActivity extends AppCompatActivity implements AddChannelDialog.
             case R.id.clear:
                 clearListOfChannels();
                 break;
-
-
-//            case R.id.notificationBtn:
-//                String msg = "WOW! YOU HAVE JUST WON 1.000.000 DOLLARS!!";
-//                NotificationCompat.Builder builder = new NotificationCompat.Builder(MainActivity.this)
-//                        .setSmallIcon(R.drawable.ic_playlist)
-//                        .setContentTitle("New notification")
-//                        .setContentText(msg)
-//                        .setAutoCancel(true);
-//
-//                Intent intent = new Intent(MainActivity.this,
-//                        NotificationActivity.class);
-//                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-//                intent.putExtra("message", msg);
-//
-//                PendingIntent pendingIntent = PendingIntent.getActivity(MainActivity.this,
-//                        0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
-//                builder.setContentIntent(pendingIntent);
-//
-//                NotificationManager notificationManager = (NotificationManager) getSystemService(
-//                        Context.NOTIFICATION_SERVICE);
-//                notificationManager.notify(0, builder.build());
-            
-//            default:
-//                player.get().stopPlayer();
-//                break;
-                //goes to another fragment automatically
-                //this will be done when clicked buttons:
-                //home, playlist, settings
 
         }
     }
