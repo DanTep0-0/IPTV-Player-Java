@@ -2,18 +2,19 @@ package com.example.ip_player;
 
 
 import android.app.Activity;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.ip_player.ui.home.Info;
-import com.example.ip_player.ui.home.ListFragment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,6 +23,8 @@ public class ChannelAdapterP extends RecyclerView.Adapter<ChannelAdapterP.ViewHo
     private ArrayList<Channel> items;
     private List<RecyclerViewItem> RVitems;
     private Activity activity;
+    public static ImageView imageView;
+
 
     public ChannelAdapterP(Activity activity, ArrayList<Channel> items) {
         this.activity = activity;
@@ -31,10 +34,14 @@ public class ChannelAdapterP extends RecyclerView.Adapter<ChannelAdapterP.ViewHo
     }
 
 
+    @NonNull
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         LayoutInflater inflater = activity.getLayoutInflater();
         View view = inflater.inflate(R.layout.list_item_p_grid, parent, false);
+
+        imageView = view.findViewById(R.id.imageViewP);
+        Log.d("ImageView","found at ChannelAdapterP");
 
         return new ViewHolder(view);
     }

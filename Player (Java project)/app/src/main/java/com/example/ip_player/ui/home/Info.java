@@ -3,8 +3,9 @@ package com.example.ip_player.ui.home;
 import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.preference.PreferenceManager;
 import android.util.Log;
+import android.view.View;
+import android.widget.Switch;
 
 import com.example.ip_player.Channel;
 import com.example.ip_player.MainActivity;
@@ -12,8 +13,6 @@ import com.example.ip_player.R;
 import com.example.ip_player.RecyclerViewItem;
 
 import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.Set;
 
 public class Info {
 
@@ -45,9 +44,22 @@ public class Info {
 
     public static ArrayList<RecyclerViewItem> toRecyclerViewItemArrayList(ArrayList<Channel> channels){
         ArrayList<RecyclerViewItem> newChannels = new ArrayList<>();
-        for(int i = 0; i < channels.size(); i++){
-            newChannels.add(new RecyclerViewItem(R.drawable.ic_launcher_foreground, channels.get(i).name));
-        }
+
+        newChannels.add(0, new RecyclerViewItem(R.drawable.ic_ukraine, channels.get(0).name));
+        newChannels.add(1, new RecyclerViewItem(R.drawable.ic_1plus1, channels.get(1).name));
+        newChannels.add(2, new RecyclerViewItem(R.drawable.ic_novyi, channels.get(2).name));
+        newChannels.add(3, new RecyclerViewItem(R.drawable.ic_inter, channels.get(3).name));
+        newChannels.add(4, new RecyclerViewItem(R.drawable.ic_ictv, channels.get(4).name));
+        newChannels.add(5, new RecyclerViewItem(R.drawable.ic_112, channels.get(5).name));
+
+        try{
+            for(int i = 6; i < channels.size(); i++){
+                newChannels.add(i, new RecyclerViewItem(R.drawable.ic_live_tv, channels.get(i).name));
+            }
+        } catch (Exception e){
+            Log.d("Info", e.getMessage());
+        };
+
         return newChannels;
     }
 
@@ -55,10 +67,6 @@ public class Info {
         channels1.addAll(channels2);
         return channels1;
     }
-//
-//    public static int getSpanCount(int numberOfItems, int itemsInRow){
-//        return numberOfItems / itemsInRow + (numberOfItems % itemsInRow == 0 ? 0 : 1);
-//    }
 
     public static ArrayList<Channel> removeFromTo(ArrayList<Channel> array, int from, int to){
         try {
@@ -94,7 +102,7 @@ public class Info {
     }
 
     public static ArrayList<String> getChannelsInfo(String TAG, Activity context) {
-        SharedPreferences sPrefs = context.getPreferences(context.MODE_PRIVATE);
+        SharedPreferences sPrefs = context.getPreferences(Context.MODE_PRIVATE);
         ArrayList<String> results = new ArrayList<String>();
 
         for(int i = 0; ;i++){
@@ -111,7 +119,7 @@ public class Info {
     }
 
     public static void setChannelsInfo(ArrayList<Channel> listOfChannels, Activity context) {
-        SharedPreferences sPrefs = context.getPreferences(context.MODE_PRIVATE);
+        SharedPreferences sPrefs = context.getPreferences(Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sPrefs.edit();
 
 
@@ -142,11 +150,36 @@ public class Info {
             }
         }
 
-        editor.commit();
+        editor.apply();
+
 
         Log.d("Info", "in setChannelsInfo(): names: " + String.valueOf(getChannelsInfo(MainActivity.CHANNELS_NAMES_TAG, context)));
         Log.d("Info", "in setChannelsInfo(): urls: " + String.valueOf(getChannelsInfo(MainActivity.CHANNELS_URLS_TAG, context)));
 
     }
 
+    //save switches states
+    public static void saveSwitchState(final Activity activity, final Switch switch_theme) {
+        SharedPreferences sharedPreferences = activity.getSharedPreferences("save", Context.MODE_PRIVATE);
+        switch_theme.setChecked(sharedPreferences.getBoolean("themeDark", false));
+
+        switch_theme.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                SharedPreferences.Editor editor = activity.getSharedPreferences("save",
+                        Context.MODE_PRIVATE).edit();
+
+                if (switch_theme.isChecked()) {
+                    editor.putBoolean("themeDark", true);
+                    editor.apply();
+                    switch_theme.setChecked(true);
+                } else {
+                    editor.putBoolean("themeDark", false);
+                    editor.apply();
+                    switch_theme.setChecked(false);
+                }
+            }
+        });
+
+    }
 }
