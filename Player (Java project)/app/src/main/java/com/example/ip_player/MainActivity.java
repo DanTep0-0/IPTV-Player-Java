@@ -32,6 +32,9 @@ public class MainActivity extends AppCompatActivity implements AddChannelDialog.
 
     public Channel myChannel;
     public static boolean isF = true;
+    public static boolean isPlayerPaused;
+    public static int returnTo;
+
     public static Channel currentChannel;
     public static SoftReference<PlayerFragment> player;
     NavController navController;
@@ -79,7 +82,7 @@ public class MainActivity extends AppCompatActivity implements AddChannelDialog.
 
             case R.id.backButton:
                 player.get().stopPlayer();
-                goToHome();
+                goTo(returnTo);
                 break;
 
             case R.id.clear:
@@ -128,17 +131,10 @@ public class MainActivity extends AppCompatActivity implements AddChannelDialog.
         return 0;
     }
 
-    public void goToHome(){
-        navController.navigate(R.id.navigation_home);
+    public void goTo(int goTo){
+        navController.navigate(goTo);
     }
 
-    public void goToPlaylist(){
-        navController.navigate(R.id.navigation_playlist);
-    }
-
-    public void goToPlayer(){
-        navController.navigate(R.id.navigation_player);
-    }
 
     private void clearListOfChannels(){
         if(ChannelAdapter.isListEmpty()){
