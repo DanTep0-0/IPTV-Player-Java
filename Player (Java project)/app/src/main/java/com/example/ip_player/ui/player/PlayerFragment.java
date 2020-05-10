@@ -28,8 +28,6 @@ public class PlayerFragment extends Fragment{
     private veg.mediaplayer.sdk.MediaPlayer mediaPlayer;
     private View thisFragmentView;
     public static ProgressDialog mDialog;
-    private ImageButton playPauseB;
-
 
     @Override
     public View onCreateView(LayoutInflater inflater,
@@ -49,9 +47,6 @@ public class PlayerFragment extends Fragment{
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-
-        playPauseB = getActivity().findViewById(R.id.playPauseB);
-        playPauseB.setOnClickListener(getPlayPauseBListener());
 
         final String stream_url = channelToShow.url;
         mediaPlayer = (veg.mediaplayer.sdk.MediaPlayer)thisFragmentView.findViewById(R.id.player);
@@ -102,39 +97,6 @@ public class PlayerFragment extends Fragment{
     public void stopPlayer(){
         mediaPlayer.Close();
         MainActivity.isPlayerPaused = true;
-    }
-
-    private View.OnClickListener getPlayPauseBListener(){
-        View.OnClickListener listener = new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(MainActivity.isPlayerPaused){
-                    mediaPlayer.Close();
-                    mediaPlayer = (veg.mediaplayer.sdk.MediaPlayer)thisFragmentView.findViewById(R.id.player);
-                    getActivity().findViewById(R.id.playerLayout).setEnabled(false);
-
-                    final String stream_url = channelToShow.url;
-                    mediaPlayer.getConfig().setConnectionUrl(stream_url);
-
-                    MediaPlayerConfig config = getConfig(mediaPlayer);
-
-                    mediaPlayer.Open(config, (MediaPlayer.MediaPlayerCallback) getActivity());
-
-
-
-                    MainActivity.isPlayerPaused = false;
-                    playPauseB.setImageResource(R.drawable.ic_pause);
-
-                    getActivity().findViewById(R.id.playerLayout).setEnabled(true);
-
-                } else {
-                    mediaPlayer.Stop();
-                    MainActivity.isPlayerPaused = true;
-                    playPauseB.setImageResource(R.drawable.ic_play);
-                }
-            }
-        };
-        return listener;
     }
 
 }

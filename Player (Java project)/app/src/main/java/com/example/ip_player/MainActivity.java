@@ -18,6 +18,7 @@ import com.example.ip_player.ui.player.PlayerFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.NotificationCompat;
 import androidx.fragment.app.FragmentManager;
@@ -61,6 +62,7 @@ public class MainActivity extends AppCompatActivity implements AddChannelDialog.
             Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
         }
 
+        setCurrentTheme(Info.getSwitch(MainActivity.this, "themeDark", false));
         setNav();
     }
 
@@ -181,6 +183,14 @@ public class MainActivity extends AppCompatActivity implements AddChannelDialog.
                     })
                     .setNegativeButton("No", null)
                     .show();
+        }
+    }
+
+    private void setCurrentTheme(boolean isDark) {
+        if (isDark) {
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+        } else if (!isDark) {
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
         }
     }
 

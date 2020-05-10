@@ -11,17 +11,7 @@
         android:layout_gravity="center"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_above="@+id/playPauseB"
         tools:ignore="NotSibling">
-
-        <ImageButton
-            android:layout_alignParentBottom="true"
-            android:id="@+id/playPauseB"
-            android:src="@drawable/ic_pause"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-        </ImageButton>
 
        </veg.mediaplayer.sdk.MediaPlayer>
 

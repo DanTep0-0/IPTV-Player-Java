@@ -158,28 +158,10 @@ public class Info {
 
     }
 
-    //save switches states
-    public static void saveSwitchState(final Activity activity, final Switch switch_theme) {
-        SharedPreferences sharedPreferences = activity.getSharedPreferences("save", Context.MODE_PRIVATE);
-        switch_theme.setChecked(sharedPreferences.getBoolean("themeDark", false));
+    //Switch
 
-        switch_theme.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                SharedPreferences.Editor editor = activity.getSharedPreferences("save",
-                        Context.MODE_PRIVATE).edit();
-
-                if (switch_theme.isChecked()) {
-                    editor.putBoolean("themeDark", true);
-                    editor.apply();
-                    switch_theme.setChecked(true);
-                } else {
-                    editor.putBoolean("themeDark", false);
-                    editor.apply();
-                    switch_theme.setChecked(false);
-                }
-            }
-        });
-
+    public static boolean getSwitch(Activity activity, String Tag, boolean defValue){
+        SharedPreferences sharedPreferences = activity.getPreferences(Context.MODE_PRIVATE);
+        return sharedPreferences.getBoolean(Tag, defValue);
     }
 }
