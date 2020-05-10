@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.MediaController;
 
 import androidx.annotation.Nullable;
@@ -27,7 +28,6 @@ public class PlayerFragment extends Fragment{
     private veg.mediaplayer.sdk.MediaPlayer mediaPlayer;
     private View thisFragmentView;
     public static ProgressDialog mDialog;
-
 
     @Override
     public View onCreateView(LayoutInflater inflater,
@@ -62,7 +62,7 @@ public class PlayerFragment extends Fragment{
 
             MediaPlayerConfig config = getConfig(mediaPlayer);
 
-
+            MainActivity.isPlayerPaused = false;
             mediaPlayer.Open(config, (MediaPlayer.MediaPlayerCallback) getActivity());
 
         }
@@ -96,6 +96,7 @@ public class PlayerFragment extends Fragment{
 
     public void stopPlayer(){
         mediaPlayer.Close();
+        MainActivity.isPlayerPaused = true;
     }
 
 }

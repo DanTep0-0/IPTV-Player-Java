@@ -14,6 +14,7 @@ import com.example.ip_player.ui.player.PlayerFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.appcompat.widget.Toolbar;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
@@ -31,6 +32,9 @@ public class MainActivity extends AppCompatActivity implements AddChannelDialog.
 
     public Channel myChannel;
     public static boolean isF = true;
+    public static boolean isPlayerPaused;
+    public static int returnTo;
+
     public static Channel currentChannel;
     public static SoftReference<PlayerFragment> player;
     public NavController navController;
@@ -51,6 +55,7 @@ public class MainActivity extends AppCompatActivity implements AddChannelDialog.
             Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
         }
 
+        setCurrentTheme(Info.getSwitch(MainActivity.this, "themeDark", false));
         setNav();
     }
 
@@ -77,7 +82,7 @@ public class MainActivity extends AppCompatActivity implements AddChannelDialog.
 
             case R.id.backButton:
                 player.get().stopPlayer();
-                goToHome();
+                goTo(returnTo);
                 break;
 
             case R.id.clear:
@@ -118,17 +123,10 @@ public class MainActivity extends AppCompatActivity implements AddChannelDialog.
         return 0;
     }
 
-    public void goToHome(){
-        navController.navigate(R.id.navigation_home);
+    public void goTo(int goTo){
+        navController.navigate(goTo);
     }
 
-    public void goToPlaylist(){
-        navController.navigate(R.id.navigation_playlist);
-    }
-
-    public void goToPlayer(){
-        navController.navigate(R.id.navigation_player);
-    }
 
     public void clearListOfChannels(){
         if(ChannelAdapter.isListEmpty()){
@@ -149,6 +147,14 @@ public class MainActivity extends AppCompatActivity implements AddChannelDialog.
                     })
                     .setNegativeButton("No", null)
                     .show();
+        }
+    }
+
+    private void setCurrentTheme(boolean isDark) {
+        if (isDark) {
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+        } else if (!isDark) {
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
         }
     }
 
