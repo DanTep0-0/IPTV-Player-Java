@@ -21,4 +21,6 @@
     <color name="bottomNavBg">#fafafa</color>
     <color name="bottomNavBorder">#FFDDDDDD</color>
 
+    <color name="ic_live_tv_color">#FFD8D8D8</color>
+
 </resources>

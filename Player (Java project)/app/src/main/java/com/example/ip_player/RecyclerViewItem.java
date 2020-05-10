@@ -3,6 +3,7 @@ package com.example.ip_player;
 public class RecyclerViewItem {
     private int drawableId;
     private String name;
+    private String imgUrl;
 
     public RecyclerViewItem(int drawableId, String name) {
         this.drawableId = drawableId;
@@ -15,5 +16,9 @@ public class RecyclerViewItem {
 
     public String getName() {
         return name;
+    }
+
+    public String getImgUrl() {
+        return imgUrl;
     }
 }

@@ -13,7 +13,6 @@
     <color name="colorPrimaryDark">#202020</color>
     <color name="colorSecondary">#fafafa</color>
     <color name="colorSecondaryActive">#fafafa</color>
-
     <!---->
 
     <color name="backButtonColor">#fafafa</color>
@@ -21,6 +20,7 @@
     <color name="bottomNavBg">#303030</color>
     <color name="bottomNavBorder">#00000000</color>
 
-<!--    <color name="colorPrimary">#32373F</color>-->
+    <color name="ic_live_tv_color">#151515</color>
 
+    <!--    <color name="colorPrimary">#32373F</color>-->
 </resources>

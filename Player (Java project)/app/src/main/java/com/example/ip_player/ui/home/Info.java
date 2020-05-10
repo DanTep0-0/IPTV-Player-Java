@@ -44,9 +44,22 @@ public class Info {
 
     public static ArrayList<RecyclerViewItem> toRecyclerViewItemArrayList(ArrayList<Channel> channels){
         ArrayList<RecyclerViewItem> newChannels = new ArrayList<>();
-        for(int i = 0; i < channels.size(); i++){
-            newChannels.add(new RecyclerViewItem(R.drawable.ic_launcher_foreground, channels.get(i).name));
-        }
+
+        newChannels.add(0, new RecyclerViewItem(R.drawable.ic_ukraine, channels.get(0).name));
+        newChannels.add(1, new RecyclerViewItem(R.drawable.ic_1plus1, channels.get(1).name));
+        newChannels.add(2, new RecyclerViewItem(R.drawable.ic_novyi, channels.get(2).name));
+        newChannels.add(3, new RecyclerViewItem(R.drawable.ic_inter, channels.get(3).name));
+        newChannels.add(4, new RecyclerViewItem(R.drawable.ic_ictv, channels.get(4).name));
+        newChannels.add(5, new RecyclerViewItem(R.drawable.ic_112, channels.get(5).name));
+
+        try{
+            for(int i = 6; i < channels.size(); i++){
+                newChannels.add(i, new RecyclerViewItem(R.drawable.ic_live_tv, channels.get(i).name));
+            }
+        } catch (Exception e){
+            Log.d("Info", e.getMessage());
+        };
+
         return newChannels;
     }
 
@@ -54,10 +67,6 @@ public class Info {
         channels1.addAll(channels2);
         return channels1;
     }
-//
-//    public static int getSpanCount(int numberOfItems, int itemsInRow){
-//        return numberOfItems / itemsInRow + (numberOfItems % itemsInRow == 0 ? 0 : 1);
-//    }
 
     public static ArrayList<Channel> removeFromTo(ArrayList<Channel> array, int from, int to){
         try {

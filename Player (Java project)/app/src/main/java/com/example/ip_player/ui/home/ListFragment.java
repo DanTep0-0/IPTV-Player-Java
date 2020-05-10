@@ -1,6 +1,7 @@
 package com.example.ip_player.ui.home;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -45,8 +46,8 @@ public class ListFragment extends Fragment {
                || channels_names.get(0) == null
                || channels_urls.size() != channels_names.size()) {
                 Log.d("Info", "here1");
-                Log.d("Info", "are channels null? = " + String.valueOf(channels_urls.get(0).equals(null)
-                        || channels_names.get(0).equals(null)));
+                Log.d("Info", "are channels null? = " + String.valueOf(channels_urls.get(0) == null
+                        || channels_names.get(0) == null));
                 Log.d("Info", "are they different? = " +  String.valueOf(channels_urls.size() != channels_names.size()));
                 Info.useChannels(Info.toArrayList(standartChannels), listOfChannels);
 
@@ -63,7 +64,7 @@ public class ListFragment extends Fragment {
 
 
         listViewChannels = view.findViewById(R.id.listOfChannelsV);
-        adapter = new ChannelAdapter(Objects.requireNonNull(getActivity()), listOfChannels);
+        adapter = new ChannelAdapter(getActivity(), listOfChannels);
         listViewChannels.setAdapter(adapter);
 
         return view;
