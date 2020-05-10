@@ -15,8 +15,6 @@ import com.example.ip_player.MainActivity;
 import com.example.ip_player.R;
 
 import java.util.ArrayList;
-import java.util.Objects;
-
 
 public class ListFragment extends Fragment {
 
@@ -25,7 +23,7 @@ public class ListFragment extends Fragment {
     public static ListView listViewChannels;
 
     public static final Channel[] standartChannels = {
-            new Channel("112", "http://31.134.126.6/stream?id=3456")
+            new Channel("1+1 channel", "http://31.134.126.6/stream?id=3454")
     };
 
     @Override

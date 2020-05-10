@@ -3,11 +3,9 @@ package com.example.ip_player.ui.settings;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.CompoundButton;
 import android.widget.Switch;
 
 import androidx.annotation.NonNull;
@@ -19,7 +17,6 @@ import androidx.lifecycle.ViewModelProviders;
 import com.example.ip_player.R;
 import com.example.ip_player.ui.home.Info;
 
-import java.util.Objects;
 
 
 public class SettingsFragment extends Fragment {
